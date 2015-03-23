@@ -1,5 +1,6 @@
 # wgen
-An R-package designed to analyse gridded and non-gridded space-time meteorlogic variables of interest.
+An R-package designed to analyse gridded and non-gridded space-time meteorologic variables of interest.
+
 Entropy, atmospheric instability, moisture convergence, geopotential pattern
 
 This is a R-package under development

@@ -13,13 +13,18 @@ classification<-function(geoW,
                          method, #"som","pca"...
                          TEMPORAL=TRUE,   
 						 nbclass=c(3,4),
+						 omit,
 						 FIGURE) {
-
+						 
    #Spatial or temporal classification						 
    if (TEMPORAL) {
       v<-t(as.matrix(geoW$values))
    } else v<-as.matrix(geoW$values)
    
+   if (!is.null(omit)) {
+      indice_noomit<-which(is.na(match(seq(1,dim(v)[1]),omit)))
+      v<-v[-omit,]
+   }
    if (method=="som") { 
       som.caracteristics<-som(v, grid = somgrid(nbclass[1], nbclass[2], "hexagonal"),toroidal=TRUE,rlen = 500)			 
       
@@ -32,7 +37,11 @@ classification<-function(geoW,
       #to be written
    }
    
-   
+   if (!is.null(omit)) {
+      tmp<-rep(NA,(length(indice_noomit)+length(omit)))
+	  tmp[indice_noomit]<-classif
+	  classif<-tmp
+   }
    if (FIGURE) {
       
 	  op <- par(no.readonly = TRUE)
@@ -43,7 +52,8 @@ classification<-function(geoW,
 		 
 		 #nodes average pattern
 		 
-		 #To do: Graph package to be used
+		 #TO DO #1: Graph package to be used
+		 #TO DO #2: have to detect wther it is on a regular or irregular grid in order to plot either proportional circle or grey scale square
 		 ##############################################################
 	     values=cbind(geoW$ground$grid,tmp)	 
 	     Min_values<-min(geoW$values,na.rm=TRUE)
@@ -53,10 +63,17 @@ classification<-function(geoW,
          colour_indice<-1-colour_indice 
          colour_indice<-10^colour_indice/10
          colour_indice<-grey(colour_indice)
-         plot(values[,1],values[,2],col=colour_indice,pch=15,cex=4,xlim=c(geoW$ground$xMin,geoW$ground$xMax),ylim=c(geoW$ground$yMin,geoW$ground$yMax),axes=FALSE,xlab="", ylab="",asp=1)
-         par(new=TRUE)
-         plot(geoW$parameter$adm_border,border="blue",lwd=1,xlim=c(geoW$ground$xMin,geoW$ground$xMax),ylim=c(geoW$ground$yMin,geoW$ground$yMax),asp=1)
-	     box() 
+         #plot(values[,1],values[,2],col=colour_indice,pch=15,cex=4,xlim=c(geoW$ground$xMin,geoW$ground$xMax),ylim=c(geoW$ground$yMin,geoW$ground$yMax),axes=FALSE,xlab="", ylab="",asp=1)
+		 plot(geoW$parameter$adm_border,border="blue",lwd=1,xlim=c(geoW$ground$xMin,geoW$ground$xMax),ylim=c(geoW$ground$yMin,geoW$ground$yMax),asp=1)
+	     par(new=TRUE)
+		 plot(values[,1],values[,2],
+		      col=ifelse(values[,3]>0,"red","blue"),#1#colour_indice,
+			  pch=1,
+			  cex=ifelse(values[,3]>0,20*(values[,3]-0)/(Max_values-0),20*abs(Min_values-values[,3])/abs(Min_values)),
+			  #cex=20*(values[,3]-Min_values)/(Max_values-Min_values),
+		      xlim=c(geoW$ground$xMin,geoW$ground$xMax),ylim=c(geoW$ground$yMin,geoW$ground$yMax),axes=FALSE,xlab="", ylab="",asp=1)
+         
+          box() 
          axis(2, ylim=c(geoW$ground$yMin,geoW$ground$yMax))
          #mtext("LAT",side=2,line=2.5)	 
          axis(1, ylim=c(geoW$ground$xMin,geoW$ground$xMax))

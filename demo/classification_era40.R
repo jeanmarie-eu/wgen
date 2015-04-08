@@ -10,6 +10,9 @@ rm(list=ls())
 
 #install_github("jeanmarielepioufle/graph")
 library(graph)
+library(geoW)
+library(basic)
+library(kohonen)
 library(wgen)   
 data(era40D2_msl) 
 data(era40D2_Z925)
@@ -26,7 +29,7 @@ data(era40D2_RH850)
 ############################################################################
 ############################################################################
 
-tmp<-classification(geoW=era40D2_msl,method="som",TEMPORAL=TRUE,nbclass=c(n1=6,n2=6),FIGURE=TRUE)
+tmp<-classification(geoW=era40D2_msl,method="som",TEMPORAL=TRUE,nbclass=c(n1=6,n2=6),omit=NULL,FIGURE=FALSE)
 
 
 

@@ -26,7 +26,7 @@ analyseC<-function(values,
    
    if ((nbcol==1) && (!parameter.action$SHIFT)) warning("Only one variable and action SHIFT not chosen...")
    
-   if(parameter.action$SHIFT)) {
+   if(parameter.action$SHIFT) {
       tmp<-analyseC.shift(value=v,date=dates,shift=1)
       v2<-tmp$value_o
       date2<-tmp$date_o

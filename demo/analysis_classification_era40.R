@@ -7,72 +7,55 @@ rm(list=ls())
 ##                                                                       ##
 ###########################################################################
 ###########################################################################
+
+library("devtools")
+install_github("jeanmarielepioufle/graph")
+install_github("jeanmarielepioufle/geoW")
+install_github("jeanmarielepioufle/basic")
+install_github("metno/wgen")
+library(graph)
+library(geoW)
+library(basic)
+library(kohonen)
 library(wgen)   
+data(classifTS.era40D2_msl) 
+data(classifTS.era40D2_Z925)
+data(classifTS.era40D2_Z500) 
+data(classifTS.era40D2_U850)
+data(classifTS.era40D2_V850)
+data(classifTS.era40D2_T850)
+data(classifTS.era40D2_RH850)
 
-data(era40D2_msl) 
-data(era40D2_Z950)
-data(era40D2_Z500) 
-data(era40D2_U850)
-data(era40D2_V850)
-data(era40D2_T850)
-data(era40D2_RH850)
-
-
-
-
-variable_ncdf<-c("z","z")
-variable_file<-c("Z925","Z500")
-variable_ncdf<-c("z","z")
-variable_file<-c("Z925","Z500")
-
-#variable_file<-c("U850")
-#variable_ncdf<-c("u")
-load(file = paste("P:/github/wgen/data/er40_",variable_file[i],"_study_areaD2_matrix.Rdata",sep="")) 
-load(file = paste("P:/github/wgen/data/er40_",variable_file[i],"_study_areaD2_dateTS.Rdata",sep="")) 
-load(file = paste(path_era,type_data,"_",variable_file[i],"_",area_case_study$area_name,"_dateTS.Rdata",sep="")) 
-
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
-#variable_file<-c("U850","V850","RH850","PW","T850") #c("msl","Z925","Z500","RH850")
-#variable_ncdf<-c("u","v","r","tcwv","t")              #c("msl","z","z","r")
- 
-
-   matrixTS<-ncdf_12h_matrix
-   matrixTS<-cbind(matrixTS,ncdf_12h_matrix)
-
-
-
-############################################################################
-############################################################################
-## CLASSIFICATION                                                         ##
-##                                                                        ##
-############################################################################
-############################################################################
-
-tmp<-classification(method="som",TEMPORAL=TRUE,values=MSL,nbclass=c(n1=6,n2=6))
-#tmp$node
-classifTS<-tmp$classif
-classifdateTS<-dateTS
-
+load(file="P:/github/wgen/data/classifTS.era40D2_msl.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_Z925.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_Z500.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_U850.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_V850.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_T850.rda")
+load(file="P:/github/wgen/data/classifTS.era40D2_RH850.rda")
 
 
 ############################################################################
 ############################################################################
 ## CLASSIFICATION ANALYSIS                                                ##
-##     - BASIC                                                            ##
+##     - ENTROPY                                                            ##
 ##     - YEARLY                                                           ##
 ##     - MONTHLY                                                          ##
 ##                                                                        ##
 ############################################################################
 ############################################################################
+valueTS_several<-cbind(classifTS.era40D2_Z925$value,
+				       classifTS.era40D2_Z500$value,
+				       classifTS.era40D2_U850$value,
+				       classifTS.era40D2_V850$value,
+				       classifTS.era40D2_T850$value,
+				       classifTS.era40D2_RH850$value)
+tobedone<-c("TEMPORAL","ENTROPY")#,"YEARLY")
+
+analyseC<-analyseTS.class(valueTS=valueTS_several,
+                          dateTS=classifTS.era40D2_msl$dateTS$dateTS,
+                          action=tobedone
+					      )
 
 type_ncdf<-"era40"
 variable_file<-c("Z925","Z500","U850","V850","T850","RH850","PW") #c("msl","Z925","Z500","RH850","U850")

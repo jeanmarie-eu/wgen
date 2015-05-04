@@ -1,4 +1,4 @@
-#' analyseTS.XYfilterTime
+#' analyseTS.entropyXY.filterTime
 #'
 #' Analysis X and Y for every month or every year or regular one
 #' @param X
@@ -6,11 +6,11 @@
 #' @param dateX
 #' @param dateY
 #' @param filterTime
-#' @keywords entropy
+#' @keywords classification analysis
 #' @export
 #' @examples
-#' analyseTS.XYfilterTime()
-analyseTS.XYfilterTime<-function(X,Y,dateX,dateY,filterTime) {
+#' analyseTS.entropyXY.filterTime()
+analyseTS.entropy.XY.filterTime<-function(X,Y,dateX,dateY,filterTime) {
    
    if (filterTime=="YEARLY")  char<-c(1,4)
    if (filterTime=="MONTHLY") char<-c(6,7)    
@@ -29,7 +29,7 @@ analyseTS.XYfilterTime<-function(X,Y,dateX,dateY,filterTime) {
       for (i in 1 : nb){
 	     X_tmp<-X[which((as.numeric(substring(dateX, char[1], char[2]))==period[i]))]	  
 	     Y_tmp<-Y[which((as.numeric(substring(dateY, char[1], char[2]))==period[i]))]
-         tmp<-analyseTS.XY(X=X_tmp,Y=Y_tmp)
+         tmp<-analyseTS.entropy.XY(X=X_tmp,Y=Y_tmp)
 	     counting<-tmp$counting
          Pij<-tmp$Pij
          Ni<-tmp$Ni 
@@ -43,7 +43,7 @@ analyseTS.XYfilterTime<-function(X,Y,dateX,dateY,filterTime) {
 								  DU=DU))
       }
    } else if (filterTime=="NONE") {
-      tmp<-analyseTS.XY(X=X,Y=Y)
+      tmp<-analyseTS.entropy.XY(X=X,Y=Y)
 	  counting<-tmp$counting
       Pij<-tmp$Pij
       Ni<-tmp$Ni

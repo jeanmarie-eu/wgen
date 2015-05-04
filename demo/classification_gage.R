@@ -35,8 +35,10 @@ dry<-RRNSDNUD_checked$zero$zero_col
 tmp<-classification(geoW=RRNSDNUD_checked,method="som",TEMPORAL=TRUE,nbclass=c(n1=4,n2=4),omit=dry,FIGURE=FALSE)
 tmp$classif[dry]<-4*4+1
 
+
+
 #TAMRR, might take some time
 TAMRR_checked<-geoW.check(geoW=TAMRR,variable=NULL,percentage=30,SIM=TRUE,OUTLIER=FALSE)
-tmp<-classification(geoW=TAMRR_checked,method="som",TEMPORAL=TRUE,nbclass=c(n1=4,n2=4),omit=NULL,FIGURE=TRUE)
+tmp<-classification(geoW=TAMRR_checked,method="som",TEMPORAL=TRUE,nbclass=c(n1=4,n2=4),omit=NULL,FIGURE=FALSE)
 
 

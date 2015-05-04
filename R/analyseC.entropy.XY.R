@@ -1,15 +1,15 @@
-#' analyseTS.XY
+#' analyseC.entropy.XY
 #'
 #' Analysis X and Y
 #' @param X
 #' @param Y
-#' @keywords entropy
+#' @keywords classification analysis
 #' @export
 #' @examples
-#' analyseTS.XY()
-analyseTS.XY<-function(X,Y) {
+#' analyseC.entropy.XY()
+analyseC.entropy.XY<-function(X,Y) {
 
-   #contingency, percentage ...etc
+   #contingency, probability ...etc
    sumup<-entropy.Xsumup(X)
    counting<-entropy.counting(X,Y) #contingency table
    Pij<-entropy.Pij(X,Y)           #probability Pij

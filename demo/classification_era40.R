@@ -28,8 +28,8 @@ data(era40D2_RH850)
 ##                                                                        ##
 ############################################################################
 ############################################################################
-
 tmp<-classification(geoW=era40D2_msl,method="som",TEMPORAL=TRUE,nbclass=c(n1=6,n2=6),omit=NULL,FIGURE=FALSE)
-
+classifTS<-list(value=tmp$classif,
+                dateTS=era40D2_msl$date)
 
 

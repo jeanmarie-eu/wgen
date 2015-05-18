@@ -1,4 +1,4 @@
-#' meteorology.lcl
+#' thermodynamics.lcl
 #'
 #' lcl: Lifted Condensation Level, pressure and temperature
 #' Because shallow convection mixes the boundry layer before afternoon convection is initiated, 
@@ -7,17 +7,17 @@
 #' @param T
 #' @param mr
 #' @param p
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.lcl()
-meteorology.lcl<-function(T,mr,p) { #T,mr,p scalar
+#' thermodynamics.lcl()
+thermodynamics.lcl<-function(T,mr,p) { #T,mr,p scalar
    if (!is.na(T) & !is.na(mr) & !is.na(p)) { 
-      Tp<-meteorology.Tp(T,p)
+      Tp<-thermodynamics.Tp(T,p)
       tmp<-seq(1050,100,-0.01) #pressure
-      error<-abs(meteorology.Tmrp(mr=mr,tmp)-meteorology.Tda(Tp,tmp))
+      error<-abs(thermodynamics.Tmrp(mr=mr,tmp)-thermodynamics.Tda(Tp,tmp))
       plcl<-tmp[which(error==min(error))]
-      Tlcl<-meteorology.Tmrp(mr,plcl)
+      Tlcl<-thermodynamics.Tmrp(mr,plcl)
       mrlcl<-mr	  
    } else {
      plcl<-NA

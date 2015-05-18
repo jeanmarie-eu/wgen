@@ -1,12 +1,12 @@
-#' meteorology.Tv
+#' thermodynamics.Tv
 #'
 #' virtual temperature
 #' @param T
 #' @param mr
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.Tv()
-meteorology.Tv<-function(T,mr){
+#' thermodynamics.Tv()
+thermodynamics.Tv<-function(T,mr){
    Tv<-T+mr/6 # approximation
 }

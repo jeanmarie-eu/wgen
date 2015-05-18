@@ -1,5 +1,5 @@
 
-#' meteorology.BoundaryLayer
+#' thermodynamics.BoundaryLayer
 #'
 #' # Because shallow convection mixes the boundry layer before afternoon convection is initiated, 
 #' it makes sense to graphically estimate mean values of mixing ratio and potential temperature and 
@@ -9,11 +9,11 @@
 #' @param Tp
 #' @param mr
 #' @param p
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.BoundaryLayer()
-meteorology.BoundaryLayer<-function(T,Td,Tp,mr,p){
+#' thermodynamics.BoundaryLayer()
+thermodynamics.BoundaryLayer<-function(T,Td,Tp,mr,p){
   indice<-which(p>=(p[1]-100))
   T_bl<-mean(T[indice],na.rm=TRUE)
   Td_bl<-mean(Td[indice],na.rm=TRUE)

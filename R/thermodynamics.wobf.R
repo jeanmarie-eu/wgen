@@ -1,14 +1,14 @@
-#' meteorology.wobf
+#' thermodynamics.wobf
 #'
 #' wobf 
 #' COPYRIGHT REMARK:  Due to a lack of time, this function has been adapted from the R-package "radiosonde"
 #' http://www.image.ucar.edu/Software/RadioSonde/
 #' @param T
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.wobf()
-meteorology.wobf<-function(T) {
+#' thermodynamics.wobf()
+thermodynamics.wobf<-function(T) {
 	x<-T-20
 	pol<-x
 	wbts<-x

@@ -1,4 +1,4 @@
-#' meteorology.lfcel
+#' thermodynamics.lfcel
 #'
 #' lfc: Level of Free Convection
 #' el: Equilibrium Level
@@ -9,15 +9,15 @@
 #' @param plcl
 #' @param T
 #' @param p
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.lfcel()
-meteorology.lfcel<-function(Twbp,plcl,T,p) { #Twb,plcl scalar
+#' thermodynamics.lfcel()
+thermodynamics.lfcel<-function(Twbp,plcl,T,p) { #Twb,plcl scalar
    if (!is.na(Twbp) & !is.na(plcl)) {
       
 	  moistadiab<-rep(NA,length(p))
-      for (i in 1: length(moistadiab)) moistadiab[i]<-meteorology.moistadiab(Twbp, p[i])
+      for (i in 1: length(moistadiab)) moistadiab[i]<-thermodynamics.moistadiab(Twbp, p[i])
 	  indice_cape<-which((moistadiab-T)>0)
 
 	  if (length(indice_cape)>0) {

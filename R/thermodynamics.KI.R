@@ -1,14 +1,14 @@
-#' meteorology.KI
+#' thermodynamics.KI
 #'
 #' KI: K-index: (850 hPa temperature - 500 hPa temperature) + 850 hPa dew point - 700 hPa dew point depression
 #' @param T
 #' @param Td
 #' @param p
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.KI()
-meteorology.KI<-function(T,Td,p){
+#' thermodynamics.KI()
+thermodynamics.KI<-function(T,Td,p){
    T850<-T[which(p==850)]
    T700<-T[which(p==700)]
    T500<-T[which(p==500)]

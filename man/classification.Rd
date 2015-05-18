@@ -4,14 +4,15 @@
 \alias{classification}
 \title{classification}
 \usage{
-classification(method, TEMPORAL = TRUE, values, nbclass = c(3, 4))
+classification(geoW, method, TEMPORAL = TRUE, nbclass = c(3, 4), omit,
+  FIGURE)
 }
 \arguments{
+\item{geoW}{format geoWeather}
+
 \item{method}{so far som only}
 
 \item{TEMPORAL}{default TRUE}
-
-\item{values}{}
 
 \item{nbclass}{default c(3,4)}
 }

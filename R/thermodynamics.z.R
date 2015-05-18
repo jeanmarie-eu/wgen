@@ -1,14 +1,15 @@
-#' meteorology.z
+#' thermodynamics.z
 #'
 #' elevation
-#' @param z
+#' @param p
 #' @param T
-#' @keywords meteorology
+#' @keywords thermodynamics
 #' @export
 #' @examples
-#' meteorology.z()
-meteorology.z<-function(z,T){ #elevation
-   results<-(-meteorology.constants$R*(T+meteorology.constants$K)/meteorology.constants$g)*log10(p/meteorology.constants$p0)
-   #results<-1013.25*(1-0.0065*z/(meteorology.K+15))^5.255
+#' thermodynamics.z()
+thermodynamics.z<-function(p,T){ 
+   results<-(-1)*
+            (thermodynamics.constants$R*(T+thermodynamics.constants$K)/thermodynamics.constants$g)*
+            log10(p/thermodynamics.constants$p0)
    return(results)
 }

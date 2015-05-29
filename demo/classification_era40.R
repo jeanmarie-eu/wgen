@@ -9,8 +9,8 @@ rm(list=ls())
 ###########################################################################
 
 #install_github("jeanmarielepioufle/graph")
-#install_github("jeanmarielepioufle/basic")
 library(graph)
+library(geoW)
 library(basic)
 library(kohonen)
 library(wgen)   

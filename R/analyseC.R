@@ -55,7 +55,7 @@ analyseC<-function(values,
    }	  
    
    if (parameter.action$MI) mi<-analyseC.mi(values1=values1,date1=dates1,values2=values2,period=period2)						  
-
+   #... 
    
    # Results
    results.MI<-list()

@@ -4,7 +4,7 @@
 \alias{analyseC.mi}
 \title{analyseC.mi}
 \usage{
-analyseC.mi(values1, date1, values2 = NULL, period_seq = NULL)
+analyseC.mi(values1, date1, values2 = NULL, period = NULL)
 }
 \arguments{
 \item{values1,}{format v1,...,vn}
@@ -13,9 +13,9 @@ analyseC.mi(values1, date1, values2 = NULL, period_seq = NULL)
 
 \item{values2,}{format v1,...,vn}
 
-\item{period_seq}{}
-
 \item{date2}{}
+
+\item{period_seq}{}
 }
 \description{
 MI between variables
